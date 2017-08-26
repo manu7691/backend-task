@@ -6,7 +6,7 @@ function getRequest(location, page){
     // Headers required by Github API
     const options = {headers: {'User-Agent': 'request'}};
     // Url to make request on Github API
-    let urlGitHub = `https://api.github.com/search/users?q=location:${location}&sort=repositories&page=${page}&per_page=100`;
+    let urlGitHub = `https://api.github.com/search/users?q=location:${encodeURI(location)}&sort=repositories&page=${page}&per_page=100`;
     return request.get(urlGitHub, options);
 }
 
