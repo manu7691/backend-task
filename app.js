@@ -31,7 +31,7 @@ app.get('/top-contributors/:location', function (req, res) {
         if(top != 100){
             usersList = usersList.slice(0, top);
         }
-        res.send((usersList));
+        res.send(usersList);
     }).catch(err => res.send(err));
 });
 
