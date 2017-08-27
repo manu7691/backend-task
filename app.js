@@ -1,6 +1,43 @@
 const express = require('express');
 const request = require('request-promise-native');
+const jwt = require('jsonwebtoken');
+const expressJWT = require('express-jwt');
 const app = express();
+const config = require('./config/config');
+
+app.set('secretToken', config.secretToken);
+
+app.use("/", expressJWT({
+    secret : app.get('secretToken'),
+    getToken: function fromHeaderOrQueryString (req) {
+        if (req.headers.authorization && req.headers.authorization.split(' ')[0] === 'Bearer')
+            return req.headers.authorization.split(' ')[1];
+        else if (req.query && req.query.token)
+            return req.query.token;
+        return null;
+      }
+}).unless({
+    path:[
+    '/token'
+    ]}
+));
+
+app.use(function (err, req, res, next) {
+    if (err.name === 'UnauthorizedError') {
+    return res.status(403).send({
+        success: false,
+        message: 'No token provided. Get one in /token'
+    });
+    }
+});
+
+app.get('/token', function(req,res){
+    const token = jwt.sign(new Buffer(Math.random().toString(), 'base64'), app.get('secretToken'));
+    res.send({
+        success: true,
+        token,
+    });
+});
 
 function getRequest(location, page){
     // Headers required by Github API

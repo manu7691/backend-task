@@ -8,7 +8,8 @@ Node & Npm installed
 In order to run the server, first you must install dependencies using command ``npm install `` , after that `` npm start ``
 
 Go to, for example: 
-http://localhost:3000/top-contributors/Barcelona?top=150
+1º - http://localhost:3000/token
+2º - http://localhost:3000/top-contributors/Barcelona?top=150&token='Put token from step 1'
 
 For TOP, you can use [50,100,150]. TOP 50 will be considered as default.
 

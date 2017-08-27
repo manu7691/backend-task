@@ -27,6 +27,8 @@
   "homepage": "https://github.com/manu7691/backend-task#readme",
   "dependencies": {
     "express": "^4.15.4",
+    "express-jwt": "^5.3.0",
+    "jsonwebtoken": "^7.4.3",
     "request": "^2.81.0",
     "request-promise-native": "^1.0.4"
   },
