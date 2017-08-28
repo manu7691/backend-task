@@ -9,6 +9,7 @@ In order to run the server, first you must install dependencies using command ``
 
 Go to, for example: 
 1º - http://localhost:3000/token
+
 2º - http://localhost:3000/top-contributors/Barcelona?top=150&token='Put token from step 1'
 
 For TOP, you can use [50,100,150]. TOP 50 will be considered as default.
